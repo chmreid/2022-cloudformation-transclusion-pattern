@@ -32,25 +32,21 @@ or file by means of reference, not by copying.)
 
 ### Tools
 
-We're using Mustache.js as a pre-parser for the CloudFormation YAML (not by choice, believe me, we would prefer Jinja2).
+We're using **Mustache.js** as a pre-parser for the CloudFormation YAML (not by choice, believe me, we would prefer Jinja2).
 That means we are writing CloudFormation templates in _mostly_ YAML, and _small bits_ of Mustache templates.
 
-We are using Python as a scripting language (this is the main supported scripting language
-for SSM Automations).
+We're using **Python** as a scripting language (this is the main supported scripting language
+for SSM Automations, plus Python is awesome).
 
 ### AWS Services
 
-We're using AWS CloudFormation, and writing CF templates in YAML, also including some Mustache templates.
+We're using AWS **CloudFormation**, and writing CF templates in YAML, also including some Mustache templates.
 
-We're using AWS Systems Manager Automations (SSM Automations) to write playbooks that operators can run, with a
-focus on incident response.
+We're using AWS **Systems Manager Automations** (SSM Automations) to write serverless playbooks that operators
+can run. (The particular application here is incident response.)
 
-We're using AWS Web Application Firewall (WAFv2) to manage requests to a web server.
+We're using AWS **Web Application Firewall** (WAFv2) to manage requests to a web server.
 (The example we cover below automates a change to the WAF.)
-
-We're using AWS lambda functions with Python code, because that is the main supported scripting language for
-SSM Automations.
-
 
 ## Where the Transclusion Pattern is Useful
 
@@ -64,6 +60,10 @@ This pattern becomes extremely useful for defining SSM Automations.
 SSM Automations can consist of multiple steps, and each step may have a bit
 of Python code that is deployed into a lambda function, so the amount of
 code can quickly grow, and maintaining and testing that code can be a mess.
+
+This pattern can also be useful for bash scripts, or for the UserData section of an
+EC2 instance (which contains a shell script that is run on boot), or anywhere
+else a snippet of code is included inline in a CloudFormation template.
 
 ## Changing Mustache Delimiters
 
@@ -90,8 +90,8 @@ will never refer to Mustache.js variables in this YAML file.
 This briefly covers portions of an example CloudFormation template.
 The full template is in the `example-block-ip/` directory.
 
-See the [Readme for the Transclusion Pattern Example](example-block-ip/Readme.md)
-for details.
+For more details about the example, see the Readme for the example in the `example-block-ip/` directory
+[here](example-block-ip/Readme.md).
 
 ### Before
 
