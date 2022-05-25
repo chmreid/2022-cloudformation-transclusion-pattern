@@ -46,21 +46,25 @@ SSM Automations can consist of multiple steps, and each step may have a bit
 of Python code that is deployed into a lambda function, so the amount of
 code can quickly grow, and maintaining and testing that code can be a mess.
 
-## Before You Begin: Mustache Delimiters
+## Changing Mustache Delimiters
 
-First, double braces are extremely overloaded special characters. Double braches in
-CloudFormation templates have different meanings to AWS CloudFormation, AWS Systems Manager,
-and Mustache.js. So before we start, we'll switch out the Mustache delimiter characters.
+Before we begin, it's important to note that double braces `{{ }}` are very overloaded
+in CloudFormation templates. They are used by AWS CloudFormation, AWS Systems Manager,
+and Mustache.js, so double braces can have a different meaning in different contexts,
+even within the same document. It can also cause confusion about intent.
 
-To swap out the double braces `{{` and `}}` with different symbols, we'll use `<%` and `%>`,
+Before we start, we will switch out Mustache delimiter characters for something
+unambiguous. We'll use `<%` and `%>`.
+
+To swap out the double braces `{{` and `}}` with `<%` and `%>`,
 put the following at the beginning of the CloudFormation YAML Mustache template:
 
 ```
 {{=<% %>=}}
 ```
 
-That can technically go anywhere, but we put it at the very top of the file so there's
-no mistaking whether something is a Mustache variable or a Systems Manager variable.
+We put it at the very top of the file so there's no mistake - double braces
+will never refer to Mustache.js variables in this YAML file.
 
 ## YAML Example
 
@@ -149,3 +153,10 @@ The final CloudFormation YAML file that is uploaded to CloudFormation will
 contain a mix of YAML and Python, but the two are only mixed when the
 Mustache pre-processing step is run.
 
+## Roles and Permissions
+
+When defining an SSM Automation, you can specify a role for the Automation
+to assume when it runs.
+
+If an SSM Automation does not have a role specified, it will run each step as the
+user who kicked off the automation.
