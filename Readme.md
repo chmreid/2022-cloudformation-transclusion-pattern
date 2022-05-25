@@ -33,14 +33,14 @@ or file by means of reference, not by copying.)
 ### Tools
 
 We're using **Mustache.js** as a pre-parser for the CloudFormation YAML (not by choice, believe me, we would prefer Jinja2).
-That means we are writing CloudFormation templates in _mostly_ YAML, and _small bits_ of Mustache templates.
+That means we are writing CloudFormation templates in _mostly_ YAML, and _small bits_ of Mustache.
 
 We're using **Python** as a scripting language (this is the main supported scripting language
 for SSM Automations, plus Python is awesome).
 
 ### AWS Services
 
-We're using AWS **CloudFormation**, and writing CF templates in YAML, also including some Mustache templates.
+We're using AWS **CloudFormation**, and writing CF templates in YAML, also including some Mustache templating.
 
 We're using AWS **Systems Manager Automations** (SSM Automations) to write serverless playbooks that operators
 can run. (The particular application here is incident response.)
