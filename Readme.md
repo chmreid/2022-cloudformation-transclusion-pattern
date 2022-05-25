@@ -1,4 +1,4 @@
-# CloudFormation Transclusion Pattern for Lambdas
+# CloudFormation Transclusion Pattern for Lambdas and SSM Automations
 
 This repository demonstrates a way of writing and organizing
 YAML documents for AWS CloudFormation in a way that keeps
