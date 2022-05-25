@@ -1,5 +1,24 @@
 # CloudFormation Transclusion Pattern for Lambdas and SSM Automations
 
+The Readme for the example in the `example-block-ip/` directory
+[is here](example-block-ip/Readme.md).
+
+## Table of Contents
+
+* [Overview](#overview)
+* [Tools And Services Used](#tools-and-services-used)
+  * [Tools](#tools)
+  * [AWS Services](#aws-services)
+* [Where the Transclusion Pattern is Useful](#where-the-transclusion-pattern-is-useful)
+* [Changing Mustache Delimiters](#changing-mustache-delimiters)
+* [YAML Example](#yaml-example)
+  * [Before](#before)
+  * [The Solution](#the-solution)
+  * [After](#after)
+* [Roles and Permissions](#roles-and-permissions)
+
+## Overview
+
 This repository demonstrates a way of writing and organizing
 YAML documents for AWS CloudFormation in a way that keeps
 the YAML separate from code.
@@ -67,6 +86,12 @@ We put it at the very top of the file so there's no mistake - double braces
 will never refer to Mustache.js variables in this YAML file.
 
 ## YAML Example
+
+This briefly covers portions of an example CloudFormation template.
+The full template is in the `example-block-ip/` directory.
+
+See the [Readme for the Transclusion Pattern Example](example-block-ip/Readme.md)
+for details.
 
 ### Before
 
