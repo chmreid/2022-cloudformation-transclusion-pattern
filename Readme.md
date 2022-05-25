@@ -177,11 +177,3 @@ into the CloudFormation template during the Mustache.js pre-processing step.
 The final CloudFormation YAML file that is uploaded to CloudFormation will
 contain a mix of YAML and Python, but the two are only mixed when the
 Mustache pre-processing step is run.
-
-## Roles and Permissions
-
-When defining an SSM Automation, you can specify a role for the Automation
-to assume when it runs.
-
-If an SSM Automation does not have a role specified, it will run each step as the
-user who kicked off the automation.

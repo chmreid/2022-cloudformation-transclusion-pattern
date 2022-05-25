@@ -75,3 +75,14 @@ pytest -vs
 ```
 
 This will automatically detect all unit tests in the current directory and run them.
+
+## Note on Roles and Permissions
+
+When defining an SSM Automation, you can specify a role for the Automation
+to assume when it runs.
+
+If an SSM Automation does not have a role specified, it will run each step as the
+user who kicked off the automation.
+
+In the example CloudFormation template, we commented out the user input parameter
+specifying the role to assume. To use an assumed role, simply uncomment it.
