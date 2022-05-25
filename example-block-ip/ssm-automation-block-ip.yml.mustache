@@ -1,0 +1,91 @@
+# Switch Mustache to non-mustache delimeters,
+# since SSM Command Docs use mustaches too
+{{=<% %>=}}
+---
+AWSTemplateFormatVersion: "2010-09-09"
+
+Parameters:
+
+  TargetIpAddress:
+    Type: String
+    Description: The IP address to add/remove from the WAF block list.
+
+Resources:
+  BlockUnblockDoc:
+    Type: "AWS::SSM::Document"
+    Properties:
+      DocumentType : Automation
+      Name: WAF-Block-Unblock-Doc
+      Content:
+        description: |
+
+          Automation Summary
+
+          ** Add or Remove an IP from the WAF Block List **
+
+          This SSM Document adds or removes a specific IP address
+          from the WAF's list of blocked IP addresses.
+
+        schemaVersion: '0.3'
+        #assumeRole: '{{ AutomationAssumeRole }}'
+        parameters:
+          BlockListName:
+            type: String
+            description: The name of the existing IPSet that the WAF uses as a block list.
+            default: "BlockedIPSet"
+          IpAddress:
+            type: String
+            description: >-
+              (Required) Provide a single IP address (example 1.2.3.4) or a comma-separated
+              list of IP addresses (example 1.2.3.4,5.6.7.8) to add or remove from the WAF
+              IP block list.
+          Operation:
+            type: String
+            description: (Required) The action to take. Must be the word Block or the word Unblock.
+            allowedPattern: "(Block|Unblock)"
+          #AutomationAssumeRole:
+          #  type: String
+          #  description: >-
+          #    (Required) The ARN of the role that allows Automation to perform the
+          #    actions on your behalf.
+
+        mainSteps:
+          - name: BRANCH_DecideOperation
+            description: |
+              Step Summary
+
+              ** Branch according to operation parameter **
+
+              This step uses the Operation parameter defined above (Block/Unblcok) to select
+              which actions in this SSM Automation to perform.
+
+            action: 'aws:branch'
+            inputs:
+              Choices:
+                - NextStep: BLOCK_IpAddress
+                  Variable: '{{Operation}}'
+                  StringEquals: Block
+                - NextStep: UNBLOCK_IpAddress
+                  Variable: '{{Operation}}'
+                  StringEquals: Unblock
+          - name: BLOCK_IpAddress
+            description: !Sub |
+              Step Summary
+
+              ** Add the user-specified IP address to the WAF IP block list. **
+
+            action: 'aws:executeScript'
+            inputs:
+              Runtime: python3.6
+              Handler: script_handler
+              InputPayload:
+                ip_list: "{{IpAddressList}}"
+                block_list_ruleset_name: "{{BlockListName}}"
+                block_list_ssmparam_name: "/DeploymentConfig/{{ env }}/BlockedIPs"
+                waf_operation: "{{Operation}}"
+              Script: |
+<%> block_ip.py%>
+
+
+# Switch Mustache back to default delimeters
+<%={{ }}=%>
