@@ -165,7 +165,7 @@ The SSM Automation above now becomes:
 
             action: 'aws:executeScript'
             inputs:
-              Runtime: python3.6
+              Runtime: python3.8
               Handler: script_handler
               InputPayload:
                 ip_list: "{{ IpAddressList }}"
