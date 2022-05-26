@@ -22,7 +22,7 @@ runs a Python function that validates the user-provided IP address to block,
 updates the AWS SSM Parameter containing blocked IPs, and updates the WAF's
 block list.
 
-![Transclusion example for automation to block an IP address - diagram of files](block_ip.png)
+![Transclusion example for automation to block an IP address - diagram of files](img/block_ip.png)
 
 ## Python Files
 

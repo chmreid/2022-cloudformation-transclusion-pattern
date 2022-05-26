@@ -26,7 +26,7 @@ the YAML separate from code.
 (What is transclusion? Transclusion is the inclusion of a document
 or file by means of reference, not by copying.)
 
-![Transclusion pattern illustration](transclusion.png)
+![Transclusion pattern - diagram of files](img/transclusion.png)
 
 ## Tools And Services Used
 
