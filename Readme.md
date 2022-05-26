@@ -193,5 +193,5 @@ during development and are only mixed in the final stage of deploying the stack.
 
 We highly encourage you to check out the Readme
 for the transclusion pattern example, in the `example-block-ip/` directory.
-A link to that [Readme.md is here. Right here. No - yup, you got it, just click right here. On this text.](example-block-ip/Readme.md).
+A link to that [Readme.md is here. Right here. Yup, you got it, just click right here. On this text.](example-block-ip/Readme.md)
 Nope, not on this text. Back up.
