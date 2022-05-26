@@ -1,5 +1,15 @@
 # CloudFormation Transclusion Pattern: Block IP Example
 
+## Table of Contents
+
+* [Overview](#overview)
+* [Python Files](#python-files)
+* [Mustache Pre\-Processing](#mustache-pre-processing)
+* [Local Testing](#local-testing)
+* [Note on Roles and Permissions](#note-on-roles-and-permissions)
+
+## Overview
+
 This directory contains an example of a CloudFormation template using the transclusion pattern.
 
 This CloudFormation template implements an SSM Automation to block an IP address.
@@ -11,6 +21,8 @@ The SSM Automation has multiple steps. The final step of the automation
 runs a Python function that validates the user-provided IP address to block,
 updates the AWS SSM Parameter containing blocked IPs, and updates the WAF's
 block list.
+
+![Transclusion example for automation to block an IP address - diagram of files](block_ip.png)
 
 ## Python Files
 
