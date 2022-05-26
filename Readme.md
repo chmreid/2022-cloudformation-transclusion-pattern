@@ -179,6 +179,19 @@ The SSM Automation above now becomes:
 The file `block_ip.py` is a normal, standard, standalone Python script
 with normal indentation. The contents of the Python script are transcluded
 into the CloudFormation template during the Mustache.js pre-processing step.
+
+The Mustache.js pre-processing step renders all Mustache variables in the
+Mustache template, and outputs a YAML file that is ready to be uploaded to
+CloudFormation to be deployed.
+
 The final CloudFormation YAML file that is uploaded to CloudFormation will
-contain a mix of YAML and Python, but the two are only mixed when the
-Mustache pre-processing step is run.
+contain a mix of YAML and Python - a bit like oil and water.
+But thanks to the transclusion method, these two ingredients are kept separate
+during development and are only mixed in the final stage of deploying the stack.
+
+## What Next?
+
+We highly encourage you to check out the Readme
+for the transclusion pattern example, in the `example-block-ip/` directory.
+A link to that [Readme.md is here. Right here. No - yup, you got it, just click right here. On this text.](example-block-ip/Readme.md).
+Nope, not on this text. Back up.
