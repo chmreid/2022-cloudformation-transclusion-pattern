@@ -135,8 +135,8 @@ There are problems with shimming Python code directly into CloudFormation YAML:
 * It's putting Python code into a YAML file, so text editors with syntax highlighting get very confused
 * It's impossible to test this code or run it locally
 * Indentation between YAML (2 spaces) and Python (4 spaces) does not match
-* The YAML file that results cannot be properly linted
-* The code embedded in the YAML file cannot be properly linted
+* The YAML file that results cannot be properly YAML-linted
+* The code embedded in the YAML file cannot be properly Python-linted
 
 We could go on.
 
