@@ -15,7 +15,8 @@ The Readme for the example in the `example-block-ip/` directory
   * [Before](#before)
   * [The Solution](#the-solution)
   * [After](#after)
-* [Roles and Permissions](#roles-and-permissions)
+* [Limitations](#limitations)
+* [What Next?](#what-next)
 
 ## Overview
 
@@ -189,9 +190,29 @@ contain a mix of YAML and Python - a bit like oil and water.
 But thanks to the transclusion method, these two ingredients are kept separate
 during development and are only mixed in the final stage of deploying the stack.
 
+## Limitations
+
+The big limitation of this technique is dependencies.
+
+We mentioned that this pattern is useful for AWS Systems Manager automations.
+All lambda/automation Python environments have the boto3 and botocore libraries
+available by default, so no dependencies need to be installed.
+
+The `requirements.txt` file in the stack directory just contains `boto3` and 
+`botocore`. It is never referenced by the CloudFormation template that defines
+the lambda function. If anything were added to it, the lambda environment
+would not know.
+
+If the lambda function code must have other dependencies installed, then the lambda
+function code, together with the requirements.txt file, will need to be put in a
+zip file and uploaded to a bucket to be deployed. And in that case, there is 
+no longer any use for the transclusion pattern, because the lambda function is
+no longer defined inline.
+
 ## What Next?
 
 We highly encourage you to check out the Readme
 for the transclusion pattern example, in the `example-block-ip/` directory.
 A link to that [Readme.md is here. Right here. Yup, you got it, just click right here. On this text.](example-block-ip/Readme.md)
 Nope, not on this text. Back up.
+
