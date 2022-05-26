@@ -192,9 +192,13 @@ during development and are only mixed in the final stage of deploying the stack.
 
 ## Limitations
 
-The big limitation of this technique is dependencies.
+The one limitation of this technique is that the transcluded script 
+can only call libraries that are available in the derfault lambda or
+automation environment.
 
 We mentioned that this pattern is useful for AWS Systems Manager automations.
+Most of the automation steps that are calling Python scripts are making changes
+to AWS infrastructure by calling the AWS API using boto3 or botocore.
 All lambda/automation Python environments have the boto3 and botocore libraries
 available by default, so no dependencies need to be installed.
 
